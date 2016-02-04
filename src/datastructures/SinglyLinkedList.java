@@ -10,7 +10,7 @@ package datastructures;
  */
 public class SinglyLinkedList<T> implements LinkedList<T> {
 	private SinglyNode<T> head;
-	int size;
+	private int size;
 	
 	/**
 	 * Constructor for SinglyLinkedList
@@ -48,7 +48,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	
 	@Override
 	public T getNodeValue(int index){
-		SinglyNode<T> elementNode = getNode(index);
+		SinglyNode<T> elementNode = this.getNode(index);
 		if(elementNode != null){
 			return elementNode.getValue();
 		}
@@ -65,7 +65,7 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		//adding to back
 		else if (index == this.size){
 			SinglyNode<T> newNode = new SinglyNode<T>(value);
-			SinglyNode<T> lastNode = getNode(this.size - 1);
+			SinglyNode<T> lastNode = this.getNode(this.size - 1);
 			lastNode.setNext(newNode);
 		}
 		//adding outside the bounds of the list
@@ -74,8 +74,8 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		//adding to the middle
 		else{
-			SinglyNode<T> beforeNode = getNode(index - 1);
-			SinglyNode<T> afterNode = getNode(index);
+			SinglyNode<T> beforeNode = this.getNode(index - 1);
+			SinglyNode<T> afterNode = this.getNode(index);
 			SinglyNode<T> newNode = new SinglyNode<T>(value, afterNode);
 			beforeNode.setNext(newNode);
 		}
@@ -84,18 +84,18 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 	
 	@Override
 	public void addToEnd(T value){
-		addNode(value, this.size);
+		this.addNode(value, this.size);
 	}
 	
 	@Override
 	public void addToFront(T value) {
-		addNode(value, 0);
+		this.addNode(value, 0);
 		
 	}
 	
 	@Override
 	public void setNodeValue(T value, int index) {
-		getNode(index).setValue(value);
+		this.getNode(index).setValue(value);
 	}
 	
 	@Override
@@ -106,28 +106,28 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		//removing from the front
 		else if (index == 0){
-			this.head = getNode(1);
+			this.head = this.getNode(1);
 		}
 		//removing from the end
 		else if (index == this.size - 1){
-			getNode(index - 1).setNext(null);
+			this.getNode(index - 1).setNext(null);
 		}
 		//adding to the middle of the list
 		else{
-			getNode(index - 1).setNext(getNode(index + 1));
+			this.getNode(index - 1).setNext(getNode(index + 1));
 		}
 		this.size--;
 	}
 	
 	@Override
 	public void removeEndNode() {
-		removeNode(this.size - 1);
+		this.removeNode(this.size - 1);
 		
 	}
 
 	@Override
 	public void removeFrontNode() {
-		removeNode(0);
+		this.removeNode(0);
 		
 	}
 	
@@ -138,19 +138,24 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		}
 		
 		for (int i = 0; i < other.getSize(); i++){
-			 addNode(other.getNodeValue(i), index + i);
+			this.addNode(other.getNodeValue(i), index + i);
 		}
 	}
 
 	@Override
 	public void addList(LinkedList<T> other){
-		addList(other, this.size);
+		this.addList(other, this.size);
 		
 	}
 	
 	@Override
 	public int getSize() {
 		return this.size;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return this.size == 0;
 	}
 	
 	@Override
@@ -187,7 +192,5 @@ public class SinglyLinkedList<T> implements LinkedList<T> {
 		str += "}";
 		return str;
 	}
-
-
 
 }

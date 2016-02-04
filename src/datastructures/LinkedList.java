@@ -96,6 +96,13 @@ public interface LinkedList<T> {
 	int getSize();
 	
 	/**
+	 * Determines if the linked list is empty
+	 * 
+	 * @return	Whether the linked list is empty or not
+	 */
+	boolean isEmpty();
+	
+	/**
 	 * Returns a new linked list that is a subsection of this linked list
 	 * 
 	 * @param startIndex	First element to be included

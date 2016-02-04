@@ -10,9 +10,9 @@ package datastructures;
  * @param <T>	Type of nodes
  */
 public class DoublyLinkedList<T> implements LinkedList<T> {
-	DoublyNode<T> head;
-	DoublyNode<T> tail;
-	int size;
+	private DoublyNode<T> head;
+	private DoublyNode<T> tail;
+	private int size;
 	
 	/**
 	 * Constructor for DoublyList
@@ -51,7 +51,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public T getNodeValue(int index) {
-		return getNode(index).getValue();
+		return this.getNode(index).getValue();
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 		}
 		//adding to the back
 		else if (index == this.size){
-			DoublyNode<T> beforeNode = getNode(this.size - 1);
+			DoublyNode<T> beforeNode = this.getNode(this.size - 1);
 			DoublyNode<T> newNode = new DoublyNode<T>(value, beforeNode, null);
 			beforeNode.setNext(newNode);
 			this.tail = newNode;
@@ -83,8 +83,8 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 		}
 		//adding to the middle
 		else {
-			DoublyNode<T> beforeNode = getNode(index - 1);
-			DoublyNode<T> afterNode = getNode(index);
+			DoublyNode<T> beforeNode = this.getNode(index - 1);
+			DoublyNode<T> afterNode = this.getNode(index);
 			DoublyNode<T> newNode = new DoublyNode<T>(value, beforeNode, afterNode);
 			beforeNode.setNext(newNode);
 			afterNode.setLast(newNode);
@@ -94,18 +94,17 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public void addToEnd(T value) {
-		addNode(value, this.size);
+		this.addNode(value, this.size);
 	}
 
 	@Override
 	public void addToFront(T value) {
-		addNode(value, 0);
-		
+		this.addNode(value, 0);	
 	}
 
 	@Override
 	public void setNodeValue(T value, int index) {
-		getNode(index).setValue(value);
+		this.getNode(index).setValue(value);
 		
 	}
 
@@ -127,8 +126,8 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 		}
 		//removing from middle
 		else {
-			DoublyNode<T> beforeNode = getNode(index - 1);
-			DoublyNode<T> afterNode = getNode(index + 1);
+			DoublyNode<T> beforeNode = this.getNode(index - 1);
+			DoublyNode<T> afterNode = this.getNode(index + 1);
 			beforeNode.setLast(afterNode);
 			afterNode.setLast(beforeNode);
 		}
@@ -138,12 +137,12 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 	
 	@Override
 	public void removeEndNode() {
-		removeNode(this.size - 1);
+		this.removeNode(this.size - 1);
 	}
 
 	@Override
 	public void removeFrontNode() {
-		removeNode(0);
+		this.removeNode(0);
 	}
 	
 	@Override
@@ -153,20 +152,25 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 		}
 		
 		for (int i = 0; i < other.getSize(); i++){
-			 addNode(other.getNodeValue(i), index + i);
+			this.addNode(other.getNodeValue(i), index + i);
 		}
 		
 	}
 
 	@Override
 	public void addList(LinkedList<T> other) {
-		addList(other, this.size);
+		this.addList(other, this.size);
 		
 	}
 	
 	@Override
 	public int getSize() {
 		return this.size;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return this.size == 0;
 	}
 	
 	@Override
@@ -203,10 +207,5 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 		str += "}";
 		return str;
 	}
-
 	
-
-
-
-
 }
