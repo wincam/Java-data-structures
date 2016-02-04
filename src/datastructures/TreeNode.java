@@ -9,28 +9,14 @@ package datastructures;
  * 
  * @param <T>	Type of stored value
  */
-public interface TreeNode<T> {
-	
-	/**
-	 * Getter for stored value
-	 * 
-	 * @return	Stored value
-	 */
-	T getValue();
-	
-	/**
-	 * Setter for stored value
-	 * 
-	 * @param value	The new stored value
-	 */
-	void setValue(T value);
+public interface TreeNode{
 	
 	/**
 	 * Gets the parent node
 	 * 
 	 * @return	Parent node
 	 */
-	TreeNode<T> getParent();
+	TreeNode getParent();
 	
 	/**
 	 * Get the child node that corresponds to an index
@@ -38,7 +24,7 @@ public interface TreeNode<T> {
 	 * @param index	Index of child node
 	 * @return		Child node
 	 */
-	TreeNode<T> getChild(int index);
+	TreeNode getChild(int index);
 	
 	/**
 	 * Get the number of children

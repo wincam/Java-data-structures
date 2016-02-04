@@ -9,7 +9,7 @@ package datastructures;
  *
  * @param <T>	Type of value contained by node
  */
-public abstract class Node<T> {
+public abstract class Node<T> implements Container<T> {
 	private T value;
 	
 	/**
@@ -21,20 +21,10 @@ public abstract class Node<T> {
 		this.value = value;
 	}
 	
-	/**
-	 * Getter for value of node
-	 * 
-	 * @return	Value of node
-	 */
 	public T getValue() {
 		return this.value;
 	}
 	
-	/**
-	 * Setter for element
-	 * 
-	 * @param value	New value of node
-	 */
 	public void setValue(T value){
 		this.value = value;
 	}
