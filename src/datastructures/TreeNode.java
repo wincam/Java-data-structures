@@ -27,6 +27,13 @@ public interface TreeNode{
 	TreeNode getChild(int index);
 	
 	/**
+	 * Remove the child node that corresponds to an index
+	 * 
+	 * @param index	Index of the child node
+	 */
+	void removeChild(int index);
+	
+	/**
 	 * Get the number of children
 	 * 
 	 * @return	Number of children
