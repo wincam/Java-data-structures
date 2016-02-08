@@ -39,4 +39,12 @@ public interface Tree {
 	 */
 	void prun(int[] index);
 	
+	/**
+	 * Gets the number of children that a node has
+	 * 
+	 * @param index	An array of integers that represents the index of the node
+	 * @return		The number of children that the node has
+	 */
+	int getNodeChildCount(int[] index);
+	
 }

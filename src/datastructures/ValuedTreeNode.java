@@ -63,6 +63,15 @@ public class ValuedTreeNode<T> implements TreeNode, Container<T> {
 	public ValuedTreeNode<T> getParent() {
 		return this.parent;
 	}
+	
+	/**
+	 * Setter for the parent node
+	 * 
+	 * @param parent	New parent node
+	 */
+	public void setParent(ValuedTreeNode<T> parent) {
+		this.parent = parent;
+	}
 
 	@Override
 	public ValuedTreeNode<T> getChild(int index) {
@@ -72,10 +81,22 @@ public class ValuedTreeNode<T> implements TreeNode, Container<T> {
 	/**
 	 * Adds child node to tree node
 	 * 
-	 * @param index	Desired index of child
+	 * @param value	Desired index of child
+	 * @param index	Value of the child
 	 */
-	public void addChild(int index){
-		this.children.addNode(new ValuedTreeNode<T>(), index);
+	public void addChild(T value,int index){
+		this.children.addNode(new ValuedTreeNode<T>(this, value), index);
+	}
+	
+	/**
+	 * Adds child node to tree node
+	 * 
+	 * @param index	Desired index of child
+	 * @param child child
+	 */
+	public void addChildNode(int index, ValuedTreeNode<T> child) {
+		this.children.addNode(child, index);
+		this.children.getNode(index).getValue().setParent(this);
 	}
 	
 	@Override
@@ -109,6 +130,13 @@ public class ValuedTreeNode<T> implements TreeNode, Container<T> {
 			depth++;
 		}
 		return depth;
+	}
+	
+	public String toString() {
+		String str = "";
+		str += this.value.toString() + ": ";
+		str += this.children.toString();
+		return str;
 	}
 
 }

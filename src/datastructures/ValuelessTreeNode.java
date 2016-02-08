@@ -34,6 +34,15 @@ public class ValuelessTreeNode implements TreeNode{
 	public ValuelessTreeNode getParent() {
 		return this.parent;
 	}
+	
+	/**
+	 * Setter for the parent node
+	 * 
+	 * @param parent	New parent node
+	 */
+	public void setParent(ValuelessTreeNode parent) {
+		this.parent = parent;
+	}
 
 	@Override
 	public ValuelessTreeNode getChild(int index) {
@@ -47,6 +56,17 @@ public class ValuelessTreeNode implements TreeNode{
 	 */
 	public void addChild(int index){
 		this.children.addNode(new ValuelessTreeNode(), index);
+	}
+	
+	/**
+	 * Adds child node to tree node
+	 * 
+	 * @param index	Desired index of child
+	 * @param child child
+	 */
+	public void addChildNode(int index, ValuelessTreeNode child) {
+		this.children.addNode(child, index);
+		this.children.getNode(index).getValue().setParent(this);
 	}
 	
 	@Override
