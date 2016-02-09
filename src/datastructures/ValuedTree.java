@@ -118,11 +118,13 @@ public class ValuedTree<T> implements Tree {
 	 * Searches tree for a value and returns -1 if it is not found
 	 * 
 	 * @param value	Value to search for
-	 * @return		Location of value if found other wise -1
+	 * @return		Location of value if found other wise {-1}
 	 */
-	public int search(T value) {
-		// TODO: add search functionality
-		return 0;
+	public int[] search(T value) {
+		if (root.getValue().equals(value)){
+			return new int[0];
+		}
+		return root.search(value);
 	}
 
 }

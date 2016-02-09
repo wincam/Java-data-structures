@@ -132,6 +132,51 @@ public class ValuedTreeNode<T> implements TreeNode, Container<T> {
 		return depth;
 	}
 	
+	/**
+	 * Searches children for a particular value
+	 * 
+	 * @param value	Value to search for
+	 * @return		The index of child that contains the value or {-1} if not found
+	 */
+	public int[] search(T value) {
+		int[] childIndex = null;
+		
+		for(int i = 0; i < this.children.getSize(); i++){
+			childIndex = this.children.getNodeValue(i).search(value);
+			
+			// Desired value is the value of the child node
+			if (this.children.getNodeValue(i).getValue().equals(value)){
+				int[] index = new int[1];
+				index[0] = i;
+				return index;
+			}
+			
+			// Desired value is the value of a child of the child
+			else if (this.children.getNodeValue(i).search(value)[0] != -1 ){
+				return this.concatenateIndex(i, childIndex);
+			}
+		}
+		
+		return new int[]{-1};
+	}
+	
+	/**
+	 * Adds a given index to index array
+	 * 
+	 * @param currentIndex	A single index
+	 * @param childrenIndex	A array index
+	 * @return				The concatenated index
+	 */
+	private int[] concatenateIndex(int currentIndex, int[] childrenIndex) {
+		int[] concatenatedIndex = new int[childrenIndex.length + 1];
+		concatenatedIndex[0] = currentIndex;
+		for (int i = 1; i < concatenatedIndex.length; i++){
+			concatenatedIndex[i] = childrenIndex[i -1];
+		}
+		return concatenatedIndex;
+	}
+	
+	
 	public String toString() {
 		String str = "";
 		str += this.value.toString() + ": ";

@@ -43,6 +43,12 @@ public class Tester{
 		node.addChild(41, 0);
 		testTree.graft(node, new int[]{0,0,0});
 		System.out.println(testTree.toString());
+		
+		int[] index = testTree.search(120);
+		for (int i = 0; i < index.length; i++){
+			System.out.println(index[i]);
+		}
+		
 	}
 
 }
