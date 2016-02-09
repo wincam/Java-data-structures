@@ -139,21 +139,20 @@ public class ValuedTreeNode<T> implements TreeNode, Container<T> {
 	 * @return		The index of child that contains the value or {-1} if not found
 	 */
 	public int[] search(T value) {
-		int[] childIndex = null;
-		
+		// check children
 		for(int i = 0; i < this.children.getSize(); i++){
-			childIndex = this.children.getNodeValue(i).search(value);
-			
 			// Desired value is the value of the child node
 			if (this.children.getNodeValue(i).getValue().equals(value)){
 				int[] index = new int[1];
 				index[0] = i;
 				return index;
 			}
-			
-			// Desired value is the value of a child of the child
-			else if (this.children.getNodeValue(i).search(value)[0] != -1 ){
-				return this.concatenateIndex(i, childIndex);
+			else{
+				int[] childIndex = this.children.getNodeValue(i).search(value);
+				// Desired value is the value of a child of the child
+				if (childIndex[0] != -1 ){
+					return this.concatenateIndex(i, childIndex);
+				}
 			}
 		}
 		
