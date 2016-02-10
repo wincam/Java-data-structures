@@ -81,7 +81,7 @@ public class ValuedTree<T> implements Tree {
 	 * @return		The value of the node
 	 */
 	public T getNodeValue(int[] index) {
-		return getNode(index).getValue();
+		return this.getNode(index).getValue();
 	}
 	
 	
