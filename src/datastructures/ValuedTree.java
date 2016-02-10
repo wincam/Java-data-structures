@@ -30,7 +30,7 @@ public class ValuedTree<T> implements Tree {
 	
 	@Override
 	public ValuedTreeNode<T> getNode(int[] index) {
-		ValuedTreeNode<T> currentNode = root;
+		ValuedTreeNode<T> currentNode = this.root;
 		//Traverse tree
 		for (int i = 0; i < index.length; i++){
 			currentNode = currentNode.getChild(index[i]);

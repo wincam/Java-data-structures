@@ -3,23 +3,43 @@ package datastructures;
 public class ValuelessTree implements Tree{
 	private ValuelessTreeNode root;
 	
+	/**
+	 * Constructor for valueless tree
+	 */
+	public ValuelessTree() {
+		root = new ValuelessTreeNode();
+	}
+	
 	
 	@Override
-	public TreeNode getNode(int[] index) {
-		// TODO Auto-generated method stub
-		return null;
+	public ValuelessTreeNode getNode(int[] index) {
+		ValuelessTreeNode currentNode = this.root;
+		//Traverse tree
+		for (int i = 0; i < index.length; i++){
+			currentNode = currentNode.getChild(index[i]);
+		}
+		return currentNode;
 	}
 
 	@Override
-	public TreeNode getRoot() {
-		// TODO Auto-generated method stub
-		return null;
+	public ValuelessTreeNode getRoot() {
+		return this.root;
 	}
 
 	@Override
 	public boolean nodeExist(int[] index) {
-		// TODO Auto-generated method stub
-		return false;
+		ValuelessTreeNode currentNode = root;
+		//Traverse tree
+		for (int i = 0; i < index.length; i++){
+			//Check if child exists
+			if (currentNode.getNumChildren() > index[i]){
+				currentNode = currentNode.getChild(index[i]);
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
